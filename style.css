@@ -641,3 +641,31 @@ body {
     align-items: flex-start;
   }
 }
+/* === SHEET POINT LABELS (dark text with white outline) ====== */
+.leaflet-tooltip.sheet-point-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+
+  color: #111827; /* dark grey text */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+
+  /* White halo / outline around dark text */
+  text-shadow:
+    -1px  0   0 #ffffff,
+     1px  0   0 #ffffff,
+     0   -1px 0 #ffffff,
+     0    1px 0 #ffffff,
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff;
+}
+
+.leaflet-tooltip.sheet-point-label::before {
+  display: none;
+}
