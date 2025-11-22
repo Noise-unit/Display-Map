@@ -619,7 +619,67 @@ body {
   font-size: 0.75rem;
   padding: 0.45rem 0.75rem;
   text-align: center;
-  cursor: not-allowed;
+  cursor: pointer;
+}
+
+.upload-layers-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.upload-layers-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.upload-layers-empty {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.upload-layers-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.upload-layer-name {
+  font-size: 0.7rem;
+  color: #e5e7eb;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-layer-remove-btn,
+.upload-clear-all-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.upload-layer-remove-btn:hover,
+.upload-clear-all-btn:hover {
+  background: #0f172a;
+}
+
+.upload-clear-all-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .sheet-upload-btn:hover {
@@ -641,6 +701,7 @@ body {
     align-items: flex-start;
   }
 }
+
 /* === SHEET POINT LABELS (dark text with white outline) ====== */
 .leaflet-tooltip.sheet-point-label {
   background: transparent;
@@ -667,5 +728,189 @@ body {
 }
 
 .leaflet-tooltip.sheet-point-label::before {
+  display: none; /* hide the little triangle pointer */
+}
+
+/* === UPLOAD CONFIG MODAL ==================================== */
+
+.upload-config-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.upload-config-modal.hidden {
   display: none;
+}
+
+.upload-config-dialog {
+  width: min(420px, 90vw);
+  max-height: 80vh;
+  background: #020617;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.9);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.upload-config-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upload-config-header h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+}
+
+.upload-config-close-btn {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.upload-config-close-btn:hover {
+  color: #e5e7eb;
+}
+
+.upload-config-body {
+  padding: 0.75rem 1rem 0.25rem;
+  overflow-y: auto;
+}
+
+.upload-config-field {
+  margin-bottom: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.upload-config-field label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.upload-config-field input[type="text"],
+.upload-config-field select {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.upload-config-field input[type="text"]:focus,
+.upload-config-field select:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+}
+
+.upload-field-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.upload-geom-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.upload-geom-row > div {
+  flex: 1 1 0;
+}
+
+.upload-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: #e5e7eb;
+}
+
+.upload-radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.upload-radio-group input {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.upload-geom-style-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.upload-geom-style-row > div {
+  flex: 1 1 0;
+}
+
+.upload-config-footer {
+  padding: 0.75rem 1rem 0.85rem;
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.upload-config-primary,
+.upload-config-secondary {
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.upload-config-primary {
+  background: #0ea5e9;
+  border-color: #0ea5e9;
+  color: #0b1120;
+  font-weight: 600;
+}
+
+.upload-config-primary:hover {
+  background: #38bdf8;
+  border-color: #38bdf8;
+}
+
+.upload-config-secondary {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.45);
+  color: #e5e7eb;
+}
+
+.upload-config-secondary:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .upload-geom-row,
+  .upload-geom-style-row {
+    flex-direction: column;
+  }
 }
