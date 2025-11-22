@@ -535,3 +535,109 @@ body {
   background: transparent;
 }
 
+/* === GOOGLE SHEET / COMPLAINT CONTROLS ====================== */
+
+.sheet-controls {
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.55);
+}
+
+.sheet-controls-header {
+  margin-bottom: 0.75rem;
+}
+
+.sheet-controls-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #e5e7eb;
+}
+
+.sheet-controls-subtitle {
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+.sheet-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  align-items: center;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.sheet-controls-row:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.sheet-controls-row-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+  margin-right: 0.25rem;
+}
+
+.sheet-toggle-item,
+.sheet-radio-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.sheet-toggle-item input,
+.sheet-radio-item input {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.sheet-controls-row--toggles {
+  justify-content: space-between;
+}
+
+.sheet-upload-row {
+  justify-content: flex-start;
+}
+
+.sheet-upload-btn {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px dashed rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.6);
+  color: #9ca3af;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  text-align: center;
+  cursor: not-allowed;
+}
+
+.sheet-upload-btn:hover {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Small screens: stack nicely */
+@media (max-width: 768px) {
+  .sheet-controls {
+    padding: 0.75rem 0.8rem;
+  }
+
+  .sheet-controls-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sheet-controls-row--toggles {
+    align-items: flex-start;
+  }
+}
