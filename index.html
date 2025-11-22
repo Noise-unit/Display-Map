@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Noise Display Map</title>
+  <title>Event Location in Trinidad and Tobago</title>
 
   <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
   <link rel="icon" href="icons/favicon.ico" sizes="any">
@@ -16,101 +16,260 @@
 </head>
 <body>
   <div class="app">
-<div class="sidebar-body">
-		  
-  <!-- Toggle Section -->
-  <div class="Toggle-block collapsible-section">
+    <div class="sidebar-body">
+      
+      <!-- Toggle Section -->
+      <div class="Toggle-block collapsible-section">
 
-    <!-- Google Sheet / complaints controls -->
-<div class="sheet-controls">
-  <div class="sheet-controls-header">
-    <div class="sheet-controls-title">Event Locations</div>
-    <div class="sheet-controls-subtitle">Trinidad and Tobago</div>
-  </div>
+        <!-- Google Sheet / complaints controls -->
+        <div class="sheet-controls">
+          <div class="sheet-controls-header">
+            <div class="sheet-controls-title">Complaint Data</div>
+            <div class="sheet-controls-subtitle">Google Sheet layer</div>
+          </div>
 
-  <!-- Toggles row -->
-  <div class="sheet-controls-row sheet-controls-row--toggles">
-    <label class="sheet-toggle-item">
-      <input type="checkbox" id="sheet-toggle-points" />
-      <span>Show points</span>
-    </label>
+          <!-- Toggles row -->
+          <div class="sheet-controls-row sheet-controls-row--toggles">
+            <label class="sheet-toggle-item">
+              <input type="checkbox" id="sheet-toggle-points" />
+              <span>Show points</span>
+            </label>
 
-    <label class="sheet-toggle-item">
-      <input type="checkbox" id="sheet-toggle-labels" />
-      <span>Show labels</span>
-    </label>
-  </div>
+            <label class="sheet-toggle-item">
+              <input type="checkbox" id="sheet-toggle-labels" />
+              <span>Show labels</span>
+            </label>
+          </div>
 
-  <!-- Display mode row -->
-  <div class="sheet-controls-row">
-    <div class="sheet-controls-row-label">Display as</div>
+          <!-- Display mode row -->
+          <div class="sheet-controls-row">
+            <div class="sheet-controls-row-label">Display as</div>
 
-    <label class="sheet-radio-item">
-      <input
-        type="radio"
-        name="sheet-display-mode"
-        value="categories"
-        checked
-      />
-      <span>Categories</span>
-    </label>
+            <label class="sheet-radio-item">
+              <input
+                type="radio"
+                name="sheet-display-mode"
+                value="categories"
+                checked
+              />
+              <span>Categories</span>
+            </label>
 
-    <label class="sheet-radio-item">
-      <input
-        type="radio"
-        name="sheet-display-mode"
-        value="heat"
-      />
-      <span>Heatmap</span>
-    </label>
-  </div>
+            <label class="sheet-radio-item">
+              <input
+                type="radio"
+                name="sheet-display-mode"
+                value="heat"
+              />
+              <span>Heatmap</span>
+            </label>
+          </div>
 
-  <!-- Future upload feature (placeholder) -->
-  <div class="sheet-controls-row sheet-upload-row">
-    <button
-      type="button"
-      id="sheet-upload-btn"
-      class="sheet-upload-btn"
-      disabled
-      title="Upload CSV / GeoJSON (coming soon)"
-    >
-      Upload CSV / GeoJSON (coming soon)
-    </button>
-  </div>
-</div>
+          <div class="sheet-controls-row sheet-upload-row">
+            <button
+              type="button"
+              id="sheet-upload-btn"
+              class="sheet-upload-btn"
+              title="Upload CSV / GeoJSON / Shapefile"
+            >
+              Upload CSV
+            </button>
 
-    <!-- Existing Major Roads toggle -->
-    <button id="toggle-roads-btn" class="roads-toggle-btn">
-      Major Roads: Off
-    </button>
-    
-    <button class="section-header" type="button">
-      <span class="section-title">Toggle layers</span>
-    </button>
+            <!-- Hidden file input used by the upload button -->
+            <input
+              type="file"
+              id="user-upload-input"
+              accept=".csv,.geojson,.json,.zip"
+              style="display: none"
+            />
+          </div>
 
-    <div class="section-body" id="layer-toggle-container">
-      <!-- JS will inject layer rows here -->
+          <!-- NEW: uploaded layers list + clear all button -->
+          <div class="sheet-controls-row upload-layers-row">
+            <div class="upload-layers-header">
+              <span class="sheet-controls-row-label">Uploaded layers</span>
+              <button
+                type="button"
+                id="upload-clear-all-btn"
+                class="upload-clear-all-btn"
+              >
+                Clear all
+              </button>
+            </div>
+            <div id="upload-layers-list" class="upload-layers-list">
+              <div class="upload-layers-empty">No uploaded layers</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Existing Major Roads toggle -->
+        <button id="toggle-roads-btn" class="roads-toggle-btn">
+          Major Roads: Off
+        </button>
+        
+        <button class="section-header" type="button">
+          <span class="section-title">Toggle layers</span>
+        </button>
+
+        <div class="section-body" id="layer-toggle-container">
+          <!-- JS will inject layer rows here -->
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-			<button
-			  id="sidebar-toggle"
-			  class="sidebar-toggle-handle"
-			  type="button"
-			  aria-label="Hide sidebar"
-			  aria-expanded="true"
-			>
-			  &laquo;
-			</button>
+    <button
+      id="sidebar-toggle"
+      class="sidebar-toggle-handle"
+      type="button"
+      aria-label="Hide sidebar"
+      aria-expanded="true"
+    >
+      &laquo;
+    </button>
 
     <!-- map display panel -->
     <main class="map-pane" aria-label="Map display">
       <div id="map" role="application" aria-label="Leaflet map"></div>
     </main>
-	
-	
   </div>
+
+<div id="upload-config-modal" class="upload-config-modal hidden">
+  <div class="upload-config-dialog">
+    <div class="upload-config-header">
+      <h2>Configure uploaded layer</h2>
+      <button
+        type="button"
+        id="upload-config-close"
+        class="upload-config-close-btn"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="upload-config-body">
+      <div class="upload-config-field">
+        <label for="upload-layer-name">Layer name</label>
+        <input type="text" id="upload-layer-name" />
+      </div>
+
+      <!-- CSV-only: choose geometry columns -->
+      <div
+        class="upload-config-field"
+        id="upload-geom-row-csv"
+        style="display: none"
+      >
+        <label class="upload-field-label">Geometry columns (CSV)</label>
+        <div class="upload-geom-row">
+          <div>
+            <label for="upload-lat-field">Easting column</label>
+            <select id="upload-lat-field"></select>
+          </div>
+          <div>
+            <label for="upload-lng-field">Northing column</label>
+            <select id="upload-lng-field"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-config-field">
+        <label for="upload-label-field">Label field</label>
+        <select id="upload-label-field"></select>
+      </div>
+
+      <div class="upload-config-field">
+        <label for="upload-style-field">Style field (optional)</label>
+        <select id="upload-style-field">
+          <option value="">None</option>
+        </select>
+      </div>
+
+      <div class="upload-config-field">
+        <label for="upload-color-scheme">Colour scheme</label>
+        <select id="upload-color-scheme">
+          <option value="pastel" selected>Pastel</option>
+          <option value="vibrant">Vibrant</option>
+          <option value="blue">Blue</option>
+        </select>
+      </div>
+
+      <div
+        class="upload-config-field"
+        id="upload-point-options"
+        style="display: none"
+      >
+        <label class="upload-field-label">Point display</label>
+        <div class="upload-radio-group">
+          <label>
+            <input
+              type="radio"
+              name="upload-point-style"
+              value="circle"
+              checked
+            />
+            Circles
+          </label>
+          <label>
+            <input type="radio" name="upload-point-style" value="pin" />
+            Drop pins
+          </label>
+        </div>
+      </div>
+
+      <div
+        class="upload-config-field"
+        id="upload-polygon-options"
+        style="display: none"
+      >
+        <label class="upload-field-label">Polygon / line style</label>
+        <div class="upload-geom-style-row">
+          <div>
+            <label for="upload-line-width">Line thickness</label>
+            <select id="upload-line-width">
+              <option value="1">Thin</option>
+              <option value="2" selected>Medium</option>
+              <option value="3">Thick</option>
+            </select>
+          </div>
+          <div>
+            <label for="upload-outline-style">Outline style</label>
+            <select id="upload-outline-style">
+              <option value="solid" selected>Solid</option>
+              <option value="dashed">Dashed (hatched-like)</option>
+            </select>
+          </div>
+        </div>
+		<div class="upload-config-row">
+		  <label for="upload-crs">Coordinate system</label>
+		  <select id="upload-crs">
+			<!-- Default to EPSG:32620 for your workflow -->
+			<option value="epsg32620" selected>UTM 20N – WGS 84 (EPSG:32620)</option>
+			<option value="wgs84">Lat/Lng – WGS 84 (EPSG:4326)</option>
+		  </select>
+		</div>
+
+      </div>
+    </div>
+
+    <div class="upload-config-footer">
+      <button
+        type="button"
+        id="upload-config-cancel"
+        class="upload-config-secondary"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        id="upload-config-apply"
+        class="upload-config-primary"
+      >
+        Add to map
+      </button>
+    </div>
+  </div>
+</div>
 
   <!-- Leaflet JS -->
   <script
@@ -149,5 +308,3 @@
   <script src="./main.js"></script>
 </body>
 </html>
-
-
