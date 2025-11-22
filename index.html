@@ -22,60 +22,64 @@
   <div class="Toggle-block collapsible-section">
 
     <!-- Google Sheet / complaints controls -->
-    <div class="sheet-controls">
-      <div class="sheet-controls-header">
-        <span class="sheet-controls-title">Complaint Data</span>
-      </div>
+<div class="sheet-controls">
+  <div class="sheet-controls-header">
+    <div class="sheet-controls-title">Complaint Data</div>
+    <div class="sheet-controls-subtitle">Google Sheet layer</div>
+  </div>
 
-      <div class="sheet-controls-row">
-        <label>
-          <input type="checkbox" id="sheet-toggle-points" />
-          Show complaint points
-        </label>
-      </div>
+  <!-- Toggles row -->
+  <div class="sheet-controls-row sheet-controls-row--toggles">
+    <label class="sheet-toggle-item">
+      <input type="checkbox" id="sheet-toggle-points" />
+      <span>Show points</span>
+    </label>
 
-      <div class="sheet-controls-row">
-        <label>
-          <input type="checkbox" id="sheet-toggle-labels" />
-          Show labels
-        </label>
-      </div>
+    <label class="sheet-toggle-item">
+      <input type="checkbox" id="sheet-toggle-labels" />
+      <span>Show labels</span>
+    </label>
+  </div>
 
-      <div class="sheet-controls-row">
-        <div class="sheet-display-mode-label">Display as</div>
-        <label>
-          <input
-            type="radio"
-            name="sheet-display-mode"
-            value="categories"
-            checked
-          />
-          Categories (Low / Med / High)
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="sheet-display-mode"
-            value="heat"
-          />
-          Heatmap
-        </label>
-      </div>
+  <!-- Display mode row -->
+  <div class="sheet-controls-row">
+    <div class="sheet-controls-row-label">Display as</div>
 
-      <!-- Placeholder for future upload feature -->
-      <div class="sheet-controls-row sheet-upload-row">
-        <button
-          type="button"
-          id="sheet-upload-btn"
-          disabled
-          title="Upload CSV / GeoJSON (coming soon)"
-        >
-          Upload CSV / GeoJSON (coming soon)
-        </button>
-      </div>
-    </div>
+    <label class="sheet-radio-item">
+      <input
+        type="radio"
+        name="sheet-display-mode"
+        value="categories"
+        checked
+      />
+      <span>Categories</span>
+    </label>
 
-    <!-- Major Roads toggle -->
+    <label class="sheet-radio-item">
+      <input
+        type="radio"
+        name="sheet-display-mode"
+        value="heat"
+      />
+      <span>Heatmap</span>
+    </label>
+  </div>
+
+  <!-- Future upload feature (placeholder) -->
+  <div class="sheet-controls-row sheet-upload-row">
+    <button
+      type="button"
+      id="sheet-upload-btn"
+      class="sheet-upload-btn"
+      disabled
+      title="Upload CSV / GeoJSON (coming soon)"
+    >
+      Upload CSV / GeoJSON (coming soon)
+    </button>
+  </div>
+</div>
+
+    <!-- Existing Major Roads toggle -->
     <button id="toggle-roads-btn" class="roads-toggle-btn">
       Major Roads: Off
     </button>
@@ -89,10 +93,7 @@
     </div>
   </div>
 </div>
-			
-			
-		  </div>
-		</div>
+
 			<button
 			  id="sidebar-toggle"
 			  class="sidebar-toggle-handle"
@@ -148,4 +149,3 @@
   <script src="./main.js"></script>
 </body>
 </html>
-
