@@ -16,23 +16,79 @@
 </head>
 <body>
   <div class="app">
-		<div class="sidebar-body">
+<div class="sidebar-body">
 		  
-		  <!-- Toggle Section -->
-		  <div class="Toggle-block collapsible-section">
-			<button id="toggle-roads-btn" class="roads-toggle-btn">
-			  Major Roads: Off
-			</button>
-			
-			<button class="section-header" type="button">
-			  <span class="section-title">Toggle layers</span>
-			</button>
+  <!-- Toggle Section -->
+  <div class="Toggle-block collapsible-section">
 
-			
-			<div class="section-body" id="layer-toggle-container">
-			  <!-- JS will inject layer rows here -->
-			</div>
+    <!-- Google Sheet / complaints controls -->
+    <div class="sheet-controls">
+      <div class="sheet-controls-header">
+        <span class="sheet-controls-title">Complaint Data</span>
+      </div>
 
+      <div class="sheet-controls-row">
+        <label>
+          <input type="checkbox" id="sheet-toggle-points" />
+          Show complaint points
+        </label>
+      </div>
+
+      <div class="sheet-controls-row">
+        <label>
+          <input type="checkbox" id="sheet-toggle-labels" />
+          Show labels
+        </label>
+      </div>
+
+      <div class="sheet-controls-row">
+        <div class="sheet-display-mode-label">Display as</div>
+        <label>
+          <input
+            type="radio"
+            name="sheet-display-mode"
+            value="categories"
+            checked
+          />
+          Categories (Low / Med / High)
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sheet-display-mode"
+            value="heat"
+          />
+          Heatmap
+        </label>
+      </div>
+
+      <!-- Placeholder for future upload feature -->
+      <div class="sheet-controls-row sheet-upload-row">
+        <button
+          type="button"
+          id="sheet-upload-btn"
+          disabled
+          title="Upload CSV / GeoJSON (coming soon)"
+        >
+          Upload CSV / GeoJSON (coming soon)
+        </button>
+      </div>
+    </div>
+
+    <!-- Major Roads toggle -->
+    <button id="toggle-roads-btn" class="roads-toggle-btn">
+      Major Roads: Off
+    </button>
+    
+    <button class="section-header" type="button">
+      <span class="section-title">Toggle layers</span>
+    </button>
+
+    <div class="section-body" id="layer-toggle-container">
+      <!-- JS will inject layer rows here -->
+    </div>
+  </div>
+</div>
 			
 			
 		  </div>
@@ -92,3 +148,4 @@
   <script src="./main.js"></script>
 </body>
 </html>
+
