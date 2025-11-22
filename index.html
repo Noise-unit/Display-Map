@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Location in Trinidad and Tobago</title>
+
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="icon" href="icons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#2563eb">
+  
+  <!-- App styles -->
+  <link rel="stylesheet" href="./style.css" />
+  
+</head>
+<body>
+  <div class="app">
+		<div class="sidebar-body">
+		  
+		  <!-- Toggle Section -->
+		  <div class="Toggle-block collapsible-section">
+			<button id="toggle-roads-btn" class="roads-toggle-btn">
+			  Major Roads: Off
+			</button>
+			
+			<button class="section-header" type="button">
+			  <span class="section-title">Toggle layers</span>
+			</button>
+
+			
+			<div class="section-body" id="layer-toggle-container">
+			  <!-- JS will inject layer rows here -->
+			</div>
+
+			
+			
+		  </div>
+		</div>
+			<button
+			  id="sidebar-toggle"
+			  class="sidebar-toggle-handle"
+			  type="button"
+			  aria-label="Hide sidebar"
+			  aria-expanded="true"
+			>
+			  &laquo;
+			</button>
+
+    <!-- map display panel -->
+    <main class="map-pane" aria-label="Map display">
+      <div id="map" role="application" aria-label="Leaflet map"></div>
+    </main>
+	
+	
+  </div>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  
+  <!-- Plugins: geocoder, draw, turf, projections, CSV, heatmap, export -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>    
+  <!-- MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+  <!-- MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>	
+	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+	<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+	<script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/proj4@2.9.2/dist/proj4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/proj4@2.11.0/dist/proj4.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/proj4leaflet@1.0.2/src/proj4leaflet.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+	<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+  <!-- my custom script for map -->
+ 
+  <script src="./main.js"></script>
+</body>
+</html>
