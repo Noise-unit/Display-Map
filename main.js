@@ -115,9 +115,9 @@ function utm32620ToLatLng(easting, northing) {
  ****************************************************/
 
 const COMPLAINT_CATEGORY_COLORS = {
-  Low: '#a7f3d0', // 0–1
-  Medium: '#fde68a', // 2–6
-  High: '#fecaca', // 7+
+  High: '#FF090B', // 7+
+  Medium: '#FE9900', // 2–6
+  Low: '#06FEEE', // 0–1
 };
 
 function complaintsToCategory(n) {
