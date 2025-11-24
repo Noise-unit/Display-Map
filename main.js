@@ -297,16 +297,16 @@ function updateSheetLegendCategories() {
     title: 'Complaint Points',
     items: [
       {
-        label: 'Low (0–1 complaints)',
-        color: COMPLAINT_CATEGORY_COLORS.Low,
+        label: 'High (7+ complaints)',
+        color: COMPLAINT_CATEGORY_COLORS.High,
       },
       {
         label: 'Medium (2–6 complaints)',
         color: COMPLAINT_CATEGORY_COLORS.Medium,
       },
       {
-        label: 'High (7+ complaints)',
-        color: COMPLAINT_CATEGORY_COLORS.High,
+        label: 'Low (0–1 complaints)',
+        color: COMPLAINT_CATEGORY_COLORS.Low,
       },
     ],
   });
